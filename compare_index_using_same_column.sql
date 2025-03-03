@@ -3,8 +3,8 @@ set nocount on;
 truncate table dbo.AccChargeCreditorOverride;
 
 declare @tableSize int = 1000;
--- set @tableSize = 10000;
--- set @tableSize = 100000;
+set @tableSize = 10000;
+set @tableSize = 100000;
 -- set @tableSize = 1000000;
 -- set @tableSize = 10000000;
 

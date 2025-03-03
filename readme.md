@@ -82,3 +82,26 @@ Perfromance comparison between clustered & non-clustered indexes and covering in
 100000 rows: 4ms vs 4ms
 1000000 rows: 3ms vs 7ms
 ```
+
+### compare_excution_plan_index.sql
+
+In this file, we will compare the execution plan of below situation:
+- 1e4 table size, using clustered index (combination of 7 columns)
+- 1e4 table size, using non-clustered index (combination of 7 columns) and clustered index (chargecode)
+- 1e5 table size, using clustered index (combination of 7 columns)
+- 1e5 table size, using non-clustered index (combination of 7 columns) and clustered index (chargecode)
+
+The sql file will contain these steps:
+- Create a table with same structure with dbo.AccChargeCreditorOverride (without FK)
+- Randomly add 1e4/1e5 rows to the table
+- Create corresponding indexes
+- Do a query and check the execution plan
+
+Results:
+
+```
+1e4 table size, using clustered index (combination of 7 columns): Clustered Index (Detailed in 1e4_before.sqlplan)
+1e4 table size, using non-clustered index (combination of 7 columns) and clustered index (chargecode): Clustered Index (Detailed in 1e4_after.sqlplan)
+1e5 table size, using clustered index (combination of 7 columns): Clustered Index (Detailed in 1e5_before.sqlplan)
+1e5 table size, using non-clustered index (combination of 7 columns) and clustered index (chargecode): Clustered Index (Detailed in 1e5_after.sqlplan)
+```
